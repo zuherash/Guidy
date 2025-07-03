@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guidy</title>
+</head>
+<body>
+<h1>Questions</h1>
+{% if user.is_authenticated %}
+<p>Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a> | <a href="{% url 'create_question' %}">Add Question</a></p>
+{% else %}
+<p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a></p>
+{% endif %}
+<ul>
+  {% for question in questions %}
+    <li>{{ question.text }} - {{ question.job_role.name }}</li>
+  {% empty %}
+    <li>No questions yet.</li>
+  {% endfor %}
+</ul>
+</body>
+</html>
